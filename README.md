@@ -4,10 +4,17 @@ Description
 Installs and configures Sonatype Nexus. Can optionally configure and install an nginx installation or provide
 SSL access to the Jetty server that runs Nexus.
 
+This is a fork of the [Riot Games nexus-cookbook](https://github.com/RiotGamesCookbooks/nexus-cookbook) master at [801787fd8edfbabd48361c51a931392fa69c9fec](https://github.com/RiotGamesCookbooks/nexus-cookbook/commit/801787fd8edfbabd48361c51a931392fa69c9fec).
+
+* Adds support for configuring the OSS LDAP feature.
+* Replaces the Riot Games nexus_cli gem with my tragus_nexus_cli fork which includes:
+--* OSS LDAP support
+--* jmorley's capabilities pull request
+
 Requirements
 ============
 
-Platform: 
+Platform:
 
 * Ubuntu
 * CentOS
@@ -24,7 +31,7 @@ Recipes
 * default - the recipe you want in your run-list. Configures a system and installs a Nexus server.
 * app - the core recipe used for installing the Nexus server.
 * nginx - add this recipe to your run-list when you want nginx installed and configured to proxy the Nexus server.
-* cli - installs packages at compilation time and uses `chef_gem` to instal the nexus_cli gem. Primarily used by the LWRPs of this cookbook.
+* cli - installs packages at compilation time and uses `chef_gem` to install the nexus_cli gem. Primarily used by the LWRPs of this cookbook.
 
 
 Usage
@@ -40,14 +47,14 @@ will be used to reflect the version in the downloads URL.
 Data Bags
 =========
 
-As of version 2.0.0, this cookbook now uses fewer, more standardized Encrypted Data Bags. Following the style used 
+As of version 2.0.0, this cookbook now uses fewer, more standardized Encrypted Data Bags. Following the style used
 at Riot, Data bags are created per Chef Environment and default to a data bag item named "_wildcard" if there is no environmental
-data bag item. 
+data bag item.
 
 For version 2.0.0, the data bag has been revised to only include the credentials, and license elements.
 
 Below is how you should create your data bags for using this cookbook:
-    
+
     knife data bag create nexus _wildcard -c your/chef/config --secret-file your/encrypted_data_bag_key
 
     {
@@ -109,7 +116,7 @@ Action  | Description              | Default
 ------- |-------------             |---------
 create  | Creates a new repository | Yes
 delete  | Deletes a repository     |
-update  | Updates a repository     | 
+update  | Updates a repository     |
 
 ### Attributes
 Attribute        | Description                                                         | Type                  | Default
@@ -129,8 +136,8 @@ Action  | Description              | Default
 ------- |-------------             |---------
 create  | Creates a new repository | Yes
 delete  | Deletes a repository     |
-add_to  | Adds a repository to group repository     | 
-remove_from  | Removes a repository to group repository     | 
+add_to  | Adds a repository to group repository     |
+remove_from  | Removes a repository to group repository     |
 
 
 ### Attributes
@@ -150,7 +157,7 @@ Action  | Description              | Default
 ------- |-------------             |---------
 create  | Creates a new repository | Yes
 delete  | Deletes a repository     |
-update  | Updates a repository     | 
+update  | Updates a repository     |
 
 ### Attributes
 Attribute        | Description                                                         | Type                  | Default
@@ -186,7 +193,7 @@ Resource provider for creating, deleting, and modifying Nexus user accounts.
 Action          | Description                                    | Default
 -------         |-------------                                   |---------
 create          | Creates a new Nexus user.                      | Yes
-delete          | Deletes a Nexus user.                          | 
+delete          | Deletes a Nexus user.                          |
 update          | Updates a Nexus user with updated information  |
 change_password | Changes a Nexus user's password                |
 
@@ -204,7 +211,7 @@ roles        | A list of roles (permissions) to apply to the user.      | Array 
 
 ## nexus\_license
 
-Resource provider for installing a license file into Nexus. 
+Resource provider for installing a license file into Nexus.
 
 ### Actions
 Action   | Description                                       | Default
@@ -224,9 +231,9 @@ Resource provider for manipulating the Nexus' settings for Smart Proxy.
 Action              | Description                                    | Default
 -------             |-------------                                   |---------
 enable              | Enables the Smart Proxy functionality.         | Yes
-disable             | Disables the Smart Proxy functionality.        | 
-add_trusted_key     | Adds a trusted key to the server.              | 
-delete_trusted_key  | Removes a trusted key from the server.         | 
+disable             | Disables the Smart Proxy functionality.        |
+add_trusted_key     | Adds a trusted key to the server.              |
+delete_trusted_key  | Removes a trusted key from the server.         |
 
 
 ### Attributes

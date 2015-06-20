@@ -1,3 +1,7 @@
+## v.3.4.0
+
+* Add support for OSS LDAP configuration and capabilities.
+
 ## v.3.3.0
 
 * [#64](https://github.com/RiotGames/nexus-cookbook/issues/64) Add a feature to allow for the usage of Chef Vault
