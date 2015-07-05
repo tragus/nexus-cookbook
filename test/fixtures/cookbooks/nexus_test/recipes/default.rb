@@ -13,13 +13,17 @@ node.set[:nexus][:app_server_proxy][:use_self_signed] = true
 include_recipe "tragus_nexus::cli"
 include_recipe "tragus_nexus::app"
 
-settings = {
-    'foo' => 'bar'
-}
-# tragus_nexus_settings 'Configure Settings' do
-#     path 'foo.bar.baz'
-#     value settings
-# end
+securityRealms = [
+      "XmlAuthenticatingRealm",
+      "XmlAuthorizingRealm",
+      "LdapAuthenticatingRealm"
+    ]
+
+tragus_nexus_settings 'Enable OSS LDAP' do
+    path 'data.securityRealms'
+    value securityRealms
+    action :update
+end
 
 ldap_conn_settings = {
     'foo' => 'bar'
