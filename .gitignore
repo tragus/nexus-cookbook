@@ -1,10 +1,21 @@
-.DS_Store
-Berksfile.lock
-Gemfile.lock
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+pkg/
+
+# Berkshelf
 .vagrant
-cookbooks/
-data_bags/
-*.sw[op]
-VERSION
-/.project
+/cookbooks
+
+Berksfile.lock
+
+# Bundler
+Gemfile.lock
+bin/*
+.bundle/*
+
 .kitchen/
+.kitchen.local.yml
