@@ -36,3 +36,17 @@ ldap_user_group_settings = {
 #     conn_settings ldap_conn_settings
 #     user_group_settings ldap_user_group_settings
 # end
+
+package 'createrepo'
+
+thirdparty_yum = {
+     "repository" => "releases",
+     "deleteProcessing" => true,
+     "deleteProcessingDelay" => 10
+}
+tragus_nexus_capability "thirdparty yum" do
+    id 'yum.metadata'
+    enabled true
+    properties thirdparty_yum
+    action :create
+end
