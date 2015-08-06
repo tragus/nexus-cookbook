@@ -17,7 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe "tragus_nexus::app_server_proxy"
+include_recipe "tragus::app_server_proxy"
 
 template ::File.join(node[:nginx][:dir], "conf.d", "upstream.conf") do
   source "upstream.conf.erb"

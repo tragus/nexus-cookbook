@@ -17,7 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe "tragus_nexus::_common_system"
+include_recipe "nexus::_common_system"
 include_recipe "java"
 
 artifact_deploy node[:nexus][:name] do

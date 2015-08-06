@@ -18,33 +18,24 @@
 # limitations under the License.
 #
 
-# chef_gem "tragus_nexus_cli" do
-#   version "4.2.0"
-# end
-
 # This is a hack until the gem is finalized
 
 package 'git' do
     action :install
 end
 
-git "/tmp/tragus_nexus_cli" do
+git "#{Chef::Config[:file_cache_path]}/nexus_cli" do
     repository 'https://github.com/tragus/nexus_cli.git'
-    reference 'master'
-    action :sync
+    revision 'j4.3.0'
 end
 
-script 'compile tragus_nexus_cli gem' do
-    interpreter '/bin/bash'
-    cwd '/tmp/tragus_nexus_cli'
-    code <<-EOH
-        /opt/chef/embedded/bin/gem build *.gemspec
-    EOH
+execute 'Build nexus_cli gem' do
+    command '/opt/chef/embedded/bin/gem build tragus_nexus_cli.gemspec'
+    cwd "#{Chef::Config[:file_cache_path]}/nexus_cli"
 end
 
-chef_gem 'tragus_nexus_cli' do
-    clear_sources true
-    compile_time false
-    source '/tmp/tragus_nexus_cli/tragus_nexus_cli-4.2.0.gem'
-    version '4.2.0'
+chef_gem "nexus_cli" do
+  version "4.3.0"
+  source "#{Chef::Config[:file_cache_path]}/nexus_cli/tragus_nexus_cli-4.3.0.gem"
+  compile_time false if respond_to?(:compile_time)
 end

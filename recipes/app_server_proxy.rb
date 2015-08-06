@@ -17,7 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe "tragus_nexus::_common_system"
+include_recipe "tragus::_common_system"
 include_recipe "nginx"
 
 directory "#{node[:nginx][:dir]}/shared/certificates" do

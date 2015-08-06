@@ -6,4 +6,4 @@ description      'Test fixure for nexus cookbook'
 long_description 'Test fixure for nexus cookbook'
 version          '0.1.0'
 
-depends 'tragus_nexus'
+depends 'nexus'

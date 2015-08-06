@@ -19,10 +19,10 @@
 #
 
 def load_current_resource
-  @current_resource = Chef::Resource::TragusNexusSettings.new(new_resource.path)
+  @current_resource = Chef::Resource::NexusSettings.new(new_resource.path)
   @current_resource.value new_resource.value
 
-  run_context.include_recipe "tragus_nexus::cli"
+  run_context.include_recipe "nexus::cli"
   Chef::Nexus.ensure_nexus_available(node)
 
   @current_resource
