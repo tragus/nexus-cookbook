@@ -74,7 +74,7 @@ artifact_deploy node[:nexus][:name] do
         :nexus_pid  => node[:nexus][:pid_dir]
       )
     end
-    
+
     template "#{conf_dir}/nexus.properties" do
       source "nexus.properties.erb"
       owner  node[:nexus][:user]

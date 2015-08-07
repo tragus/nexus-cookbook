@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: nexus
-# Resource:: settings
+# Resource:: capabilities
 #
 # Author:: Kyle Allan (<kallan@riotgames.com>)
 # Copyright 2013, Riot Games
@@ -18,8 +18,9 @@
 # limitations under the License.
 #
 
-actions :update
-default_action :update
+actions :createOrUpdate, :delete
+default_action :createOrUpdate
 
-attribute :path, :kind_of  => String, :name_attribute => true
-attribute :value, :kind_of => [String, TrueClass, FalseClass, Hash, Array], :required => true
+attribute :type, :kind_of  => String, :name_attribute => true
+attribute :enabled, :kind_of  => [TrueClass, FalseClass], :default => TrueClass
+attribute :properties, :kind_of => Hash, :default => nil
