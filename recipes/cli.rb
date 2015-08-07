@@ -24,18 +24,18 @@ package 'git' do
     action :install
 end
 
-git "#{Chef::Config[:file_cache_path]}/nexus_cli" do
+git "#{Chef::Config[:file_cache_path]}/tragus_nexus_cli" do
     repository 'https://github.com/tragus/nexus_cli.git'
     revision 'j4.3.0'
 end
 
 execute 'Build nexus_cli gem' do
     command '/opt/chef/embedded/bin/gem build tragus_nexus_cli.gemspec'
-    cwd "#{Chef::Config[:file_cache_path]}/nexus_cli"
+    cwd "#{Chef::Config[:file_cache_path]}/tragus_nexus_cli"
 end
 
-chef_gem "nexus_cli" do
+chef_gem "tragus_nexus_cli" do
   version "4.3.0"
-  source "#{Chef::Config[:file_cache_path]}/nexus_cli/tragus_nexus_cli-4.3.0.gem"
+  source "#{Chef::Config[:file_cache_path]}/tragus_nexus_cli/tragus_nexus_cli-4.3.0.gem"
   compile_time false if respond_to?(:compile_time)
 end

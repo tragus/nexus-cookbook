@@ -18,9 +18,9 @@
 # limitations under the License.
 #
 
-actions :create, :delete
-default_action :create
+actions :createOrUpdate, :delete
+default_action :createOrUpdate
 
-attribute :id, :kind_of  => String, :name_attribute => true
+attribute :type, :kind_of  => String, :name_attribute => true
 attribute :enabled, :kind_of  => [TrueClass, FalseClass], :default => TrueClass
 attribute :properties, :kind_of => Hash, :default => nil

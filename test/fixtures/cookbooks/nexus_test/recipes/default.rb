@@ -39,14 +39,24 @@ ldap_user_group_settings = {
 
 package 'createrepo'
 
+yum_properties = {
+    "maxNumberParallelThreads" => 12,
+    "createrepoPath" => "/usr/bin/createrepo",
+    "mergerepoPath" => "/usr/bin/mergerepo"
+}
+nexus_capability "yum capability" do
+    type 'yum'
+    enabled true
+    properties yum_properties
+end
+
 thirdparty_yum = {
      "repository" => "releases",
      "deleteProcessing" => true,
      "deleteProcessingDelay" => 10
 }
-tragus_nexus_capability "thirdparty yum" do
-    id 'yum.metadata'
+nexus_capability "thirdparty yum" do
+    type 'yum.generate'
     enabled true
     properties thirdparty_yum
-    action :create
 end

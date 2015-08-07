@@ -6,7 +6,7 @@ Installs and configures Sonatype Nexus. Can optionally configure and install an 
 This is a fork of the [Riot Games nexus-cookbook](https://github.com/RiotGamesCookbooks/nexus-cookbook) master at [801787fd8edfbabd48361c51a931392fa69c9fec](https://github.com/RiotGamesCookbooks/nexus-cookbook/commit/801787fd8edfbabd48361c51a931392fa69c9fec).
 
 * Adds support for configuring the OSS LDAP feature.
-* Replaces the Riot Games nexus_cli gem with my tragus_cli fork which includes:
+* Replaces the Riot Games nexus_cli gem with my tragus_nexus_cli fork which includes:
 --* OSS LDAP support
 --* jmorley's capabilities pull request
 

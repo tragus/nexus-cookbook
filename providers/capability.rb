@@ -19,17 +19,29 @@
 #
 
 def load_current_resource
-  @current_resource = Chef::Resource::TragusNexusCapability.new(new_resource.path)
-  @current_resource.value new_resource.value
+  @current_resource = Chef::Resource::NexusCapability.new(new_resource.name)
 
-  run_context.include_recipe "tragus_nexus::cli"
+  run_context.include_recipe "nexus::cli"
   Chef::Nexus.ensure_nexus_available(node)
 
   @current_resource
 end
 
-action :create do
-  Chef::Nexus::nexus(node).create_capability(new_resource.id, new_resource.enabled, new_resource.properties)
+action :createOrUpdate do
+  id = nil
+  capabilities = Chef::Nexus::nexus(node).get_capabilities_info()
+  capabilities.each do |c|
+    if c['capability']['typeId'] == new_resource.type
+      id = c['capability']['id']
+      break
+    end
+  end
+
+  if id.nil?
+    Chef::Nexus::nexus(node).create_capability(new_resource.type, new_resource.enabled, new_resource.properties)
+  else
+    Chef::Nexus::nexus(node).update_capability(id, new_resource.type, new_resource.enabled, new_resource.properties)
+  end
   new_resource.updated_by_last_action(true)
 end
 
