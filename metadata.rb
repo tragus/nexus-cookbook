@@ -1,4 +1,4 @@
-name             "tragus_nexus"
+name             "nexus"
 maintainer       "Riot Games"
 maintainer_email "kallan@riotgames.com"
 license          "Apache 2.0"

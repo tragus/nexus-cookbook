@@ -1,6 +1,20 @@
-.DS_Store
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+pkg/
+
+# Berkshelf
+.vagrant
+/cookbooks
+
 Berksfile.lock
+
+# Bundler
 Gemfile.lock
+<<<<<<< HEAD
 .vagrant
 cookbooks/
 data_bags/
@@ -8,3 +22,10 @@ data_bags/
 VERSION
 /.project
 this-is-*
+=======
+bin/*
+.bundle/*
+
+.kitchen/
+.kitchen.local.yml
+>>>>>>> a0df475bba3e0302731818474c4fb8c48be03ecc

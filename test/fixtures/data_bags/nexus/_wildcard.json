@@ -1,0 +1,9 @@
+{
+  "id": "_wildcard",
+  "credentials": {
+    "encrypted_data": "+TQPFGRlK5q5RjbgY9OaYLWqCSGjzbiETPrmDWvK2RxUx7holt1dSRMI0sCi\n0Xr2w46eWV97Z+ZtilZrbFXb2muLLQY9cZZ939TBUA+b7tI=\n",
+    "iv": "x0cKMMhRNIicxLIguDRpVA==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

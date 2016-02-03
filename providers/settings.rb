@@ -24,7 +24,7 @@ def load_current_resource
 
   run_context.include_recipe "nexus::cli"
   Chef::Nexus.ensure_nexus_available(node)
-  
+
   @current_resource
 end
 
